@@ -57,6 +57,7 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 	//第二个label
 	UILabel *labelTwo = [self costumLabel:kHeaderModelDesContent
 								  andFont:@"Arial" andSizeL:12];
+	//labelTwo的CGRect
 	CGRect labelTwoRect = CGRectMake(10,
 									 labelOneHight,
 									 labelTwo.frame.size.width,
@@ -144,7 +145,7 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 
 }
 
-#pragma mark -定制headerView
+#pragma mark - 定制headerView
 - (UILabel *)costumLabel:(NSString *)labelText
 				 andFont:(NSString *)textFont andSizeL:(CGFloat)textSize
 {
@@ -162,8 +163,9 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 											  constrainedToSize:minisize
 												  lineBreakMode:label.lineBreakMode];
 	
+	//CGSize labelTextSize = [kHeaderModelDesContent sizeWithFont:font forWidth:300.0f lineBreakMode:NSLineBreakByWordWrapping];
+	
 	CGRect labelRect = CGRectMake(10, 0, labelTextSize.width, labelTextSize.height);
-	NSLog(@"%f, %f",labelTextSize.width, labelTextSize.height);
 	label.frame = labelRect;
 	return label;
 	
