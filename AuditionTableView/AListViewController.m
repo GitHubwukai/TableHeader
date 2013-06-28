@@ -39,7 +39,6 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 	return self;
 }
 
-
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
@@ -61,12 +60,12 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 	CGRect labelTwoRect = CGRectMake(10,
 									 labelOneHight,
 									 labelTwo.frame.size.width,
-									 labelTwo.frame.size.height);
+									 labelTwo.frame.size.height+10);
 	labelTwo.frame = labelTwoRect;
 	CGRect viewRect = CGRectMake(0,
 								 0,
 								 320.0f,
-								 labelOne.frame.size.height+labelTwo.frame.size.height+10);
+								 labelOne.frame.size.height+labelTwo.frame.size.height);
 	
 	view.frame = viewRect;
 	[view setBackgroundColor:[UIColor colorWithWhite:1.000 alpha:1.000]];
@@ -75,13 +74,16 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 	
 	self.tableView.tableHeaderView = view;
 	self.tableView.tableHeaderView.hidden = NO;
+	//----------------------------------------------
 	//设置footerview
+	//----------------------------------------------
 	UIView *footView = [[UIView alloc] init];
 	UILabel *footerLabel = [self costumLabel:footerString
 									 andFont:@"Arial"
-									andSizeL:12];
+									andSizeL:13];
 //	CGSize footViewSize = CGSizeMake(footerLabel.frame.size.width, footerLabel.frame.size.height);
-	CGRect footViewRect = CGRectMake(0, 0, footerLabel.frame.size.width, footerLabel.frame.size.height+20);
+	CGRect footViewRect = CGRectMake(0, 0, footerLabel.frame.size.width, footerLabel.frame.size.height);
+	NSLog(@"%f",footerLabel.frame.size.height);
 	footView.frame = footViewRect;
 	[footView addSubview:footerLabel];
 	self.tableView.tableFooterView = footView;
@@ -120,8 +122,6 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
   return cell;
 }
 
-
-
 #pragma mark - UITableViewDelegate
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -138,7 +138,6 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 	return 30;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
@@ -154,17 +153,15 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 	label.numberOfLines = 0;
 	label.lineBreakMode = NSLineBreakByWordWrapping;
 	label.text = labelText;
-	label.backgroundColor = [UIColor clearColor];
+	label.backgroundColor = [UIColor darkGrayColor];
 	label.font = font;
 	
 	CGSize minisize = CGSizeMake(300.0f, 80.0f);
 	//返回字体区域大小
 	CGSize labelTextSize = [kHeaderModelDesContent sizeWithFont:font
 											  constrainedToSize:minisize
-												  lineBreakMode:label.lineBreakMode];
-	
+												  lineBreakMode:label.lineBreakMode];	
 	//CGSize labelTextSize = [kHeaderModelDesContent sizeWithFont:font forWidth:300.0f lineBreakMode:NSLineBreakByWordWrapping];
-	
 	CGRect labelRect = CGRectMake(10, 0, labelTextSize.width, labelTextSize.height);
 	label.frame = labelRect;
 	return label;
