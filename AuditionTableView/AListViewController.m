@@ -60,7 +60,7 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 	CGRect labelTwoRect = CGRectMake(10,
 									 labelOneHight,
 									 labelTwo.frame.size.width,
-									 labelTwo.frame.size.height+10);
+									 labelTwo.frame.size.height);
 	labelTwo.frame = labelTwoRect;
 	CGRect viewRect = CGRectMake(0,
 								 0,
@@ -149,20 +149,20 @@ static NSString * const footerString = @"开启后会接收到已关注的问题
 				 andFont:(NSString *)textFont andSizeL:(CGFloat)textSize
 {
 	UILabel *label = [[UILabel alloc] init];
-	UIFont *font = [UIFont fontWithName:textFont size:textSize];
+	UIFont *font2 = [UIFont systemFontOfSize:15];
+	//UIFont *font = [UIFont fontWithName:textFont size:textSize];
 	label.numberOfLines = 0;
 	label.lineBreakMode = NSLineBreakByWordWrapping;
 	label.text = labelText;
-	label.backgroundColor = [UIColor darkGrayColor];
-	label.font = font;
+	label.backgroundColor = [UIColor clearColor];
+	label.font = font2;
 	
-	CGSize minisize = CGSizeMake(300.0f, 80.0f);
+	CGSize minisize = CGSizeMake(300.0f, MAXFLOAT);
 	//返回字体区域大小
-	CGSize labelTextSize = [kHeaderModelDesContent sizeWithFont:font
+	CGSize labelTextSize = [kHeaderModelDesContent sizeWithFont:font2
 											  constrainedToSize:minisize
 												  lineBreakMode:label.lineBreakMode];	
-	//CGSize labelTextSize = [kHeaderModelDesContent sizeWithFont:font forWidth:300.0f lineBreakMode:NSLineBreakByWordWrapping];
-	CGRect labelRect = CGRectMake(10, 0, labelTextSize.width, labelTextSize.height);
+	CGRect labelRect = CGRectMake(10, 0, 300.0f, labelTextSize.height);
 	label.frame = labelRect;
 	return label;
 	
